@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from src.controllers import cryptocurrency
 from src.controllers import market_summary
 from src.controllers import price_history
@@ -15,6 +16,15 @@ app = FastAPI(
     docs_url=('/docs' if settings.FASTAPI_DEBUG else None),
     redoc_url=('/redocs' if settings.FASTAPI_DEBUG else None),
 )
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.on_event("startup")
 async def startup_event():
     print("Iniciando a aplicação...")

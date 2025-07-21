@@ -80,9 +80,9 @@ body {
 /* Menu sanduíche para favoritos */
 .favorites-toggle {
   position: fixed;
-  top: 50%;
+  top: 6rem;
   right: 2rem;
-  transform: translateY(-50%);
+  transform: translateY(0);
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
@@ -92,16 +92,39 @@ body {
   cursor: pointer;
   z-index: 1000;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
+  overflow: hidden;
 }
 
 .favorites-toggle:hover {
-  transform: translateY(-50%) scale(1.1);
+  transform: translateY(-2px) scale(1.1);
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+}
+
+.favorites-toggle.active {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(239, 68, 68, 0.4);
+  animation: pulse-red 2s infinite;
+}
+
+.favorites-toggle.active:hover {
+  transform: translateY(-2px) scale(1.15);
+  box-shadow: 0 8px 30px rgba(239, 68, 68, 0.5);
+}
+
+/* Animação de pulso vermelho para o estado ativo */
+@keyframes pulse-red {
+  0%, 100% {
+    box-shadow: 0 6px 25px rgba(239, 68, 68, 0.4);
+  }
+  50% {
+    box-shadow: 0 6px 25px rgba(239, 68, 68, 0.6), 0 0 0 8px rgba(239, 68, 68, 0.1);
+  }
 }
 
 .favorites-sidebar {
@@ -314,6 +337,22 @@ body {
   .main-container {
     padding: 0 1rem;
   }
+  
+  .favorites-toggle {
+    top: 5rem;
+    right: 1.5rem;
+    width: 55px;
+    height: 55px;
+    font-size: 1.3rem;
+  }
+  
+  .favorites-toggle.active {
+    transform: scale(1.05);
+  }
+  
+  .favorites-toggle.active:hover {
+    transform: translateY(-2px) scale(1.1);
+  }
 }
 
 /* Responsividade para celulares */
@@ -324,5 +363,21 @@ body {
 
   .crypto-grid {
     gap: 1rem;
+  }
+  
+  .favorites-toggle {
+    top: 4.5rem;
+    right: 1rem;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+  
+  .favorites-toggle.active {
+    transform: scale(1.02);
+  }
+  
+  .favorites-toggle.active:hover {
+    transform: translateY(-1px) scale(1.05);
   }
 }

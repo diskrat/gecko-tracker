@@ -45,11 +45,11 @@ function App() {
 
                     {/* Botão Menu Sanduíche para Favoritos */}
                     <button
-                        className="favorites-toggle"
-                        onClick={() => setFavoritesOpen(true)}
-                        title="Meus Favoritos"
+                        className={`favorites-toggle ${favoritesOpen ? 'active' : ''}`}
+                        onClick={() => setFavoritesOpen(!favoritesOpen)}
+                        title={favoritesOpen ? "Fechar Favoritos" : "Meus Favoritos"}
                     >
-                        ⭐
+                        {favoritesOpen ? '✕' : '⭐'}
                     </button>
 
                     {/* Overlay para fechar favoritos */}
